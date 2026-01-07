@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <climits>
 using namespace std;
 
 struct TreeNode {
@@ -11,19 +12,19 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
- 
+
 class Solution {
 public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> result;
-        iotraversal(root, result);
-        return result;
-    }
-    void iotraversal(TreeNode* node, vector<int> &res) {
-        if (node == nullptr)
-            return;
-        iotraversal(node->left, res);
-        res.push_back(node->val);
-        iotraversal(node->right, res);
+    TreeNode* searchBST(TreeNode* root, int val) {
+        TreeNode* x = root;
+        while (x != nullptr) {
+            if (x->val == val) return x;
+            if (x->val > val) {
+                x = x->left;
+            } else {
+                x = x->right;
+            }
+        }
+        return x;
     }
 };

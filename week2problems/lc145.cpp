@@ -11,19 +11,18 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
- 
+
 class Solution {
 public:
-    vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> postorderTraversal(TreeNode* root) {
         vector<int> result;
-        iotraversal(root, result);
+        postOT(result, root);
         return result;
     }
-    void iotraversal(TreeNode* node, vector<int> &res) {
-        if (node == nullptr)
-            return;
-        iotraversal(node->left, res);
-        res.push_back(node->val);
-        iotraversal(node->right, res);
+    void postOT(vector<int> &nums, TreeNode* root) {
+        if (root == nullptr) return;
+        postOT(nums, root->left);
+        postOT(nums, root->right);
+        nums.push_back(root->val);
     }
 };
